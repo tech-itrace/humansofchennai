@@ -1,0 +1,44 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import StoryCard from '../../../components/StoryCard.astro';
+
+export async function getStaticPaths() {
+  const stories = await getCollection('stories', ({ data }) => data.status === 'published');
+  return stories.map((story) => ({
+    params: { id: story.id },
+    props: { story },
+  }));
+}
+
+const { story } = Astro.props;
+const { Content } = await render(story);
+const base = import.meta.env.BASE_URL;
+
+const allStories = await getCollection('stories', ({ data }) => data.status === 'published');
+const moreStories = allStories.filter((s) => s.id !== story.id).slice(0, 3);
+---
+
+<BaseLayout title={`${story.data.name} — Humans of Chennai`} description={story.data.pullQuote}>
+  <div class="story-hero wrap">
+    <img src={`${base}${story.data.photo}`} alt={story.data.photoAlt} />
+  </div>
+  <article class="story-body">
+    <p class="pull-quote">{story.data.pullQuote}</p>
+    <p class="meta-line">
+      {story.data.name} &middot; {story.data.area} &middot; {story.data.category}
+      <br />
+      As told to {story.data.contributedBy}
+    </p>
+    <Content />
+  </article>
+
+  {moreStories.length > 0 && (
+    <div class="wrap">
+      <p class="section-title">More stories</p>
+      <div class="story-grid">
+        {moreStories.map((s) => <StoryCard story={s} />)}
+      </div>
+    </div>
+  )}
+</BaseLayout>

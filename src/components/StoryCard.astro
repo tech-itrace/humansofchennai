@@ -1,0 +1,17 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  story: CollectionEntry<'stories'>;
+}
+
+const { story } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<a class="story-card" href={`${base}stories/${story.id}/`}>
+  <img src={`${base}${story.data.photo}`} alt={story.data.photoAlt} loading="lazy" />
+  <p class="meta">{story.data.area} &middot; {story.data.category}</p>
+  <h2>{story.data.name}</h2>
+  <p>{story.data.pullQuote}</p>
+</a>
