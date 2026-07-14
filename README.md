@@ -46,6 +46,20 @@ Story body in Markdown, first person.
 Place the portrait at `public/images/stories/<slug>/cover.jpg`. A story
 only appears on the site once `status: published`.
 
+## Deployment
+
+Pushes to `main` build and deploy automatically via
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+
+One-time setup (repo admin, via the GitHub web UI): go to
+**Settings → Pages** and set **Source** to **GitHub Actions**. Until that's
+set, the workflow will build successfully but the deploy step will fail.
+
+The site is configured in `astro.config.mjs` for
+`https://tech-itrace.github.io/humansofchennai/`. If a custom domain is
+added later, update `site` and remove `base` there, and add a `CNAME` file
+under `public/`.
+
 ## Commands
 
 | Command           | Action                                       |
