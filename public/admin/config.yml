@@ -1,0 +1,45 @@
+backend:
+  name: github
+  repo: tech-itrace/humansofchennai
+  branch: main
+  # Points at the OAuth proxy in oauth-proxy/. GitHub Pages can't run this
+  # itself — see oauth-proxy/README.md for the one-time deploy + GitHub
+  # OAuth App setup this requires before /admin can log in.
+  base_url: https://REPLACE-WITH-YOUR-OAUTH-PROXY-DOMAIN
+  auth_endpoint: auth
+
+# Every entry becomes a PR (draft -> in review -> ready), so nothing reaches
+# `main` — and therefore the live site — without a maintainer approving and
+# merging it in GitHub.
+publish_mode: editorial_workflow
+
+media_folder: public/images/stories/{{slug}}
+public_folder: images/stories/{{slug}}
+
+collections:
+  - name: stories
+    label: Stories
+    label_singular: Story
+    folder: src/content/stories
+    create: true
+    identifier_field: name
+    slug: '{{slug}}'
+    format: frontmatter
+    extension: md
+    fields:
+      - { label: 'Name', name: 'name', widget: 'string', hint: 'First name (or however the subject wants to be identified).' }
+      - { label: 'Photo', name: 'photo', widget: 'image' }
+      - { label: 'Photo description', name: 'photoAlt', widget: 'string', hint: 'For screen readers — describe the photo, not the story.' }
+      - { label: 'Neighborhood / area', name: 'area', widget: 'string', hint: 'e.g. Mylapore, Adyar, Royapettah' }
+      - { label: 'Category', name: 'category', widget: 'string', hint: 'e.g. Work, Family, Craft, Migration, Tradition' }
+      - { label: 'Pull quote', name: 'pullQuote', widget: 'string', hint: 'One short line from the story, shown on the story card.' }
+      - { label: 'Publish date', name: 'publishDate', widget: 'datetime' }
+      - { label: 'Contributed by', name: 'contributedBy', widget: 'string' }
+      - label: 'Status'
+        name: 'status'
+        widget: 'select'
+        options: ['draft', 'published']
+        default: 'draft'
+        hint: 'Only "published" stories appear on the live site. Leave as draft until the PR is reviewed and merged.'
+      - { label: 'Tags', name: 'tags', widget: 'list', default: [] }
+      - { label: 'Story', name: 'body', widget: 'markdown' }

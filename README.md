@@ -2,7 +2,8 @@
 
 A static blog of short, first-person stories about people across Chennai —
 one subject, one portrait, one narrative per post. See [PLAN.md](PLAN.md)
-for the full project plan and design rationale.
+for the full project plan and design rationale, and
+[CONTRIBUTING.md](CONTRIBUTING.md) for how to submit a story.
 
 ## Project structure
 
@@ -45,6 +46,10 @@ Story body in Markdown, first person.
 
 Place the portrait at `public/images/stories/<slug>/cover.jpg`. A story
 only appears on the site once `status: published`.
+
+Non-technical contributors can instead use the `/admin` editor — see
+[CONTRIBUTING.md](CONTRIBUTING.md). It requires a one-time OAuth proxy
+setup documented in [oauth-proxy/README.md](oauth-proxy/README.md).
 
 ## Deployment
 

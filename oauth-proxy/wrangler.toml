@@ -1,0 +1,7 @@
+name = "humansofchennai-cms-auth"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+# GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET are set as secrets, not here:
+#   wrangler secret put GITHUB_CLIENT_ID
+#   wrangler secret put GITHUB_CLIENT_SECRET
