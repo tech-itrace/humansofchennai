@@ -1,12 +1,17 @@
-# Humans of PSG — Project Plan
+# Humans of Chennai — Project Plan
 
 ## 1. Purpose
 
 A maintainable static blog that publishes short, first-person human-interest
-stories about people at PSG College of Technology (students, staff, alumni),
-in the editorial style of Humans of Bombay — one subject, one portrait, one
-narrative per post — rather than the multi-category magazine style of PSG's
-existing publication, The Bridge.
+stories about people across Chennai, in the editorial style of Humans of
+Bombay — one subject, one portrait, one narrative per post — rather than the
+multi-category magazine style of PSG Tech's own publication, The Bridge,
+which was reviewed for reference but is not the model this project follows.
+
+This repo is public, so all naming, examples, and sample content below use
+"Humans of Chennai" as the project identity. Institutions such as PSG College
+of Technology may appear as a `tag`/`category` value on individual stories
+(one community among many in the city), never as the project's name or scope.
 
 ## 2. Reference sites analyzed
 
@@ -28,7 +33,7 @@ existing publication, The Bridge.
   narrative with no Q&A structure and minimal byline emphasis, a short closing
   "brand" paragraph, a "Recent posts" sidebar, and social share icons.
 - Content is short, emotional, one-subject-per-post.
-- This is the content/UX model "Humans of PSG" should follow.
+- This is the content/UX model "Humans of Chennai" should follow.
 
 ## 3. Content model
 
@@ -42,13 +47,13 @@ name: "Riza"
 slug: riza-and-her-sister
 photo: /images/stories/riza-and-her-sister/cover.jpg
 photoAlt: "Riza and her sister"
-department: "Alumni"        # e.g. Mechanical, CSE, Textile, Staff, Alumni
-batch: "2019"                # optional
+area: "Mylapore"              # Chennai neighborhood the story is rooted in
+category: "Family"            # e.g. Family, Work, Migration, Craft, Alumni (PSG etc.)
 pullQuote: "What makes her special is everything but her condition."
 publishDate: 2026-07-15
 contributedBy: "Jane Doe"
 status: draft | published
-tags: [family, resilience]
+tags: [family, resilience, psg-tech]   # institution tags like psg-tech live here
 ---
 Story body in first person, Markdown...
 ```
@@ -62,10 +67,10 @@ A Zod schema in `src/content.config.ts` enforces this shape.
 - **Homepage** — grid of story cards (photo, name, pull-quote, "Read story"),
   following the Humans of Bombay blog-grid pattern.
 - **Story page** — full-bleed portrait, then narrative text, then a "More
-  stories" rail, restyled with PSG colors/typeface.
-- **Tag/department pages** (e.g. `/tag/alumni`) generated automatically from
-  frontmatter, for browsing by department without adopting The Bridge's full
-  magazine chrome.
+  stories" rail, restyled with Humans of Chennai brand colors/typeface.
+- **Tag/area/category pages** (e.g. `/tag/mylapore`, `/tag/psg-tech`)
+  generated automatically from frontmatter, for browsing by neighborhood,
+  theme, or institution without adopting The Bridge's full magazine chrome.
 
 ## 5. Authoring workflow (non-technical contributors)
 
@@ -101,6 +106,6 @@ A Zod schema in `src/content.config.ts` enforces this shape.
 
 ## 8. Open items / decisions deferred
 
-- Final visual design (PSG brand colors/typeface) not yet chosen.
+- Final visual design (Humans of Chennai brand colors/typeface) not yet chosen.
 - Whether a custom domain will be used for GitHub Pages.
 - Moderation policy for volunteer-submitted stories beyond "reviewed via PR".
