@@ -5,7 +5,7 @@ backend:
   # Points at the OAuth proxy in oauth-proxy/. GitHub Pages can't run this
   # itself — see oauth-proxy/README.md for the one-time deploy + GitHub
   # OAuth App setup this requires before /admin can log in.
-  base_url: https://REPLACE-WITH-YOUR-OAUTH-PROXY-DOMAIN
+  base_url: https://humansofchennai-cms-auth.humansofchennai.workers.dev
   auth_endpoint: auth
 
 # Every entry becomes a PR (draft -> in review -> ready), so nothing reaches
