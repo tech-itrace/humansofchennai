@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import StoryCard from '../../../components/StoryCard.astro';
+import { slugify } from '../../../lib/slugify';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const stories = await getCollection('stories', ({ data }) => data.status === 'published');
+
+  const bySlug = new Map<string, { label: string; stories: CollectionEntry<'stories'>[] }>();
+
+  for (const story of stories) {
+    const values = [story.data.area, story.data.category, ...story.data.tags];
+    for (const value of values) {
+      const slug = slugify(value);
+      if (!slug) continue;
+      const entry = bySlug.get(slug) ?? { label: value, stories: [] };
+      if (!entry.stories.includes(story)) entry.stories.push(story);
+      bySlug.set(slug, entry);
+    }
+  }
+
+  return Array.from(bySlug.entries()).map(([tag, { label, stories }]) => ({
+    params: { tag },
+    props: { label, stories },
+  }));
+}
+
+const { label, stories } = Astro.props;
+---
+
+<BaseLayout title={`${label} — Humans of Chennai`}>
+  <div class="wrap">
+    <p class="section-title">Tagged</p>
+    <h1>{label}</h1>
+    <div class="story-grid">
+      {stories.map((story) => <StoryCard story={story} />)}
+    </div>
+  </div>
+</BaseLayout>

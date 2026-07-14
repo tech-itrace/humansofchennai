@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
@@ -7,4 +8,5 @@ export default defineConfig({
   // Update `site` if a custom domain is set up later, and drop `base` in that case.
   site: 'https://tech-itrace.github.io',
   base: '/humansofchennai/',
+  integrations: [sitemap()],
 });

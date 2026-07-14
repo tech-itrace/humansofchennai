@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import StoryCard from '../../../components/StoryCard.astro';
+import { slugify } from '../../../lib/slugify';
 
 export async function getStaticPaths() {
   const stories = await getCollection('stories', ({ data }) => data.status === 'published');
@@ -17,9 +18,18 @@ const base = import.meta.env.BASE_URL;
 
 const allStories = await getCollection('stories', ({ data }) => data.status === 'published');
 const moreStories = allStories.filter((s) => s.id !== story.id).slice(0, 3);
+
+const seenSlugs = new Set<string>();
+const tagValues = [story.data.area, story.data.category, ...story.data.tags].filter((value) => {
+  const slug = slugify(value);
+  if (seenSlugs.has(slug)) return false;
+  seenSlugs.add(slug);
+  return true;
+});
+const ogImageUrl = new URL(`${base}og/${story.id}.png`, Astro.site).toString();
 ---
 
-<BaseLayout title={`${story.data.name} — Humans of Chennai`} description={story.data.pullQuote}>
+<BaseLayout title={`${story.data.name} — Humans of Chennai`} description={story.data.pullQuote} image={ogImageUrl}>
   <div class="story-hero wrap">
     <img src={`${base}${story.data.photo}`} alt={story.data.photoAlt} />
   </div>
@@ -31,6 +41,11 @@ const moreStories = allStories.filter((s) => s.id !== story.id).slice(0, 3);
       As told to {story.data.contributedBy}
     </p>
     <Content />
+    <p class="tag-list">
+      {tagValues.map((value) => (
+        <a class="tag-pill" href={`${base}tag/${slugify(value)}/`}>{value}</a>
+      ))}
+    </p>
   </article>
 
   {moreStories.length > 0 && (
