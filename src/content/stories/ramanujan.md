@@ -7,8 +7,8 @@ category: Work
 pullQuote: man who knew infinity
 publishDate: 2026-07-15T02:08:00.000+05:30
 contributedBy: Udhay
-status: draft
-tags: []
+status: published
+tags: [maths]
 ---
 
 
