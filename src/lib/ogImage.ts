@@ -1,6 +1,7 @@
 import sharp from 'sharp';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
+import { isExternalPhoto } from './photoUrl';
 
 const WIDTH = 1200;
 const HEIGHT = 630;
@@ -9,14 +10,23 @@ const PHOTO_WIDTH = 600;
 interface OgImageOptions {
   name: string;
   pullQuote: string;
-  /** Path relative to public/, e.g. "images/stories/<slug>/cover.jpg" */
+  /** Either a path relative to public/ (e.g. "images/stories/<slug>/cover.jpg") or an absolute https:// URL. */
   photoPath: string;
   accent?: string;
 }
 
-export async function generateOgImage({ name, pullQuote, photoPath, accent = '#b3441e' }: OgImageOptions): Promise<Buffer> {
+async function loadPhotoBuffer(photoPath: string): Promise<Buffer> {
+  if (isExternalPhoto(photoPath)) {
+    const res = await fetch(photoPath);
+    if (!res.ok) throw new Error(`Failed to fetch OG photo ${photoPath}: ${res.status}`);
+    return Buffer.from(await res.arrayBuffer());
+  }
   const absolutePhotoPath = path.join(process.cwd(), 'public', photoPath);
-  const photoBuffer = await readFile(absolutePhotoPath);
+  return readFile(absolutePhotoPath);
+}
+
+export async function generateOgImage({ name, pullQuote, photoPath, accent = '#b3441e' }: OgImageOptions): Promise<Buffer> {
+  const photoBuffer = await loadPhotoBuffer(photoPath);
 
   const photo = await sharp(photoBuffer)
     .resize(PHOTO_WIDTH, HEIGHT, { fit: 'cover' })

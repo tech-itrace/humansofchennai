@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { resolvePhotoUrl } from '../lib/photoUrl';
 
 interface Props {
   story: CollectionEntry<'stories'>;
@@ -10,7 +11,7 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <a class="story-card" href={`${base}stories/${story.id}/`}>
-  <img src={`${base}${story.data.photo}`} alt={story.data.photoAlt} loading="lazy" />
+  <img src={resolvePhotoUrl(base, story.data.photo)} alt={story.data.photoAlt} loading="lazy" />
   <p class="meta">{story.data.area} &middot; {story.data.category}</p>
   <h2>{story.data.name}</h2>
   <p>{story.data.pullQuote}</p>
