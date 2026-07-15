@@ -10,8 +10,10 @@ const { story } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
 
-<a class="story-card" href={`${base}stories/${story.id}/`}>
-  <img src={resolvePhotoUrl(base, story.data.photo)} alt={story.data.photoAlt} loading="lazy" />
+<a class="story-card reveal" href={`${base}stories/${story.id}/`}>
+  <div class="story-card-media">
+    <img src={resolvePhotoUrl(base, story.data.photo)} alt={story.data.photoAlt} loading="lazy" />
+  </div>
   <p class="meta">{story.data.area} &middot; {story.data.category}</p>
   <h2>{story.data.name}</h2>
   <p>{story.data.pullQuote}</p>

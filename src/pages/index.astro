@@ -10,6 +10,10 @@ const stories = (await getCollection('stories', ({ data }) => data.status === 'p
 
 <BaseLayout title="Humans of Chennai">
   <div class="wrap">
+    <div class="hero">
+      <h1>Stories from every <span class="accent-word">corner</span> of the city.</h1>
+      <p>Short, first-person stories about the people of Chennai — their neighborhoods, their work, and the moments that shaped them.</p>
+    </div>
     <div class="story-grid">
       {stories.map((story) => <StoryCard story={story} />)}
     </div>
