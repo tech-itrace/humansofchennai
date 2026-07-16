@@ -1,5 +1,5 @@
 ---
-name: A. R. Rahman
+name: Shiv Nadar
 photo: images/stories/{{slug}}/img_0253.jpeg
 photoAlt: Shiv Nadar
 area: "Tuticorin "
