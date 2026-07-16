@@ -7,7 +7,7 @@ category: Craft
 pullQuote: The boy from Kodambakkam who became the Mozart of Madras.
 publishDate: 2026-07-16T07:56:00.000+05:30
 contributedBy: Udhay
-status: draft
+status: published
 tags:
   - music
   - film-score
