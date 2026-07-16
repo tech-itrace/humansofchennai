@@ -1,17 +1,15 @@
 ---
-name: A. R. Rahman
-photo: https://upload.wikimedia.org/wikipedia/commons/0/07/A._R._Rahman.jpg
-photoAlt: A. R. Rahman speaking at a press event in 2015
-area: Kodambakkam
-category: Craft
-pullQuote: The boy from Kodambakkam who became the Mozart of Madras.
+name: Shiv Nadar
+photo: images/stories/{{slug}}/img_0253.jpeg
+photoAlt: Shiv Nadar
+area: "Tuticorin "
+category: "Technology Software "
+pullQuote: Indian billionaire businessman and philanthropist.
 publishDate: 2026-07-16T07:56:00.000+05:30
-contributedBy: Udhay
+contributedBy: Venk
 status: published
 tags:
-  - music
-  - film-score
-  - oscar
+  - Technology
 ---
 He grew up in a house on a quiet street in Kodambakkam, in a family of session musicians, surrounded from childhood by the sound of film orchestras rehearsing. His father, R. K. Shekhar, composed and conducted for Malayalam films and died when the boy was nine — the family rented out his father's musical instruments to get by. By his early teens he was playing keyboard on film sessions himself, dropping out of school to tour with an orchestra led by the flautist Sivamani and cellist genius Ilaiyaraaja's group.
 
