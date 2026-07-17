@@ -7,7 +7,7 @@ category: Craft
 pullQuote: I learned to stitch before I learned to read.
 publishDate: 2026-07-17T19:16:00.000+05:30
 contributedBy: Test Contributor
-status: draft
+status: published
 tags:
   - craft
   - mylapore
