@@ -1,6 +1,6 @@
 ---
 name: K. Kamaraj
-photo: images/stories/{{slug}}/kamaraj.png
+photo: images/stories/k-kamaraj/cover.png
 photoAlt: Portrait of K. Kamaraj
 area: Chennai
 category: Tradition

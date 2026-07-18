@@ -1,11 +1,47 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import StoryCard from '../components/StoryCard.astro';
+import StoryCarousel from '../components/StoryCarousel.astro';
+import SectionCard from '../components/SectionCard.astro';
+
+const base = import.meta.env.BASE_URL;
 
 const stories = (await getCollection('stories', ({ data }) => data.status === 'published')).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
+
+const firstBySection = (tag: string) => stories.find((story) => story.data.tags.includes(tag));
+
+const sections = [
+  {
+    tag: 'memories',
+    title: 'Memories',
+    description: 'Nostalgic, historical stories about old Chennai.',
+    href: `${base}memories/`,
+    tone: 'accent' as const,
+  },
+  {
+    tag: 'moments',
+    title: 'Moments',
+    description: 'Short, photo-led snapshots from around the city.',
+    href: `${base}moments/`,
+    tone: 'accent-2' as const,
+  },
+  {
+    tag: 'movements',
+    title: 'Movements',
+    description: 'Stories of social change and community organizing.',
+    href: `${base}movements/`,
+    tone: 'accent-2' as const,
+  },
+  {
+    tag: 'models',
+    title: 'Models',
+    description: 'Role models and change-makers who inspire.',
+    href: `${base}models/`,
+    tone: 'accent' as const,
+  },
+];
 ---
 
 <BaseLayout title="Humans of Chennai">
@@ -14,8 +50,37 @@ const stories = (await getCollection('stories', ({ data }) => data.status === 'p
       <h1>Stories from every <span class="accent-word">corner</span> of the city.</h1>
       <p>Short, first-person stories about the people of Chennai — their neighborhoods, their work, and the moments that shaped them.</p>
     </div>
-    <div class="story-grid">
-      {stories.map((story) => <StoryCard story={story} />)}
-    </div>
+
+    <section class="section-teaser reveal">
+      <div class="section-teaser-head">
+        <div>
+          <p class="section-title">Stories</p>
+          <p class="section-teaser-desc">The latest stories, told in people's own words.</p>
+        </div>
+        <a class="see-all" href={`${base}stories/`}>See all Stories &rarr;</a>
+      </div>
+      <StoryCarousel stories={stories} />
+    </section>
+
+    <section class="section-teaser reveal">
+      <p class="section-title">More from Humans of Chennai</p>
+      <div class="section-grid">
+        {
+          sections.map((section) => {
+            const story = firstBySection(section.tag);
+            return (
+              <SectionCard
+                title={section.title}
+                description={section.description}
+                href={section.href}
+                tone={section.tone}
+                photo={story?.data.photo}
+                photoAlt={story?.data.photoAlt}
+              />
+            );
+          })
+        }
+      </div>
+    </section>
   </div>
 </BaseLayout>

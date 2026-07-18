@@ -1,6 +1,6 @@
 ---
 name: APJ Abdul Kalam
-photo: images/stories/{{slug}}/abdulkalam.png
+photo: images/stories/apj-abdul-kalam/cover.png
 photoAlt: Portrait of APJ Abdul Kalam
 area: Chennai
 category: Work
