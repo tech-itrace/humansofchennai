@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StoryCard from '../../components/StoryCard.astro';
+
+const stories = (await getCollection('stories', ({ data }) => data.status === 'published')).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+---
+
+<BaseLayout
+  title="Stories — Humans of Chennai"
+  description="Every published story from Humans of Chennai, newest first."
+>
+  <div class="wrap">
+    <p class="section-title">All stories</p>
+    <h1 class="page-title">Stories</h1>
+    <p class="page-intro">Every story we've published, in one place — newest first.</p>
+    <div class="story-grid">
+      {stories.map((story) => <StoryCard story={story} />)}
+    </div>
+  </div>
+</BaseLayout>

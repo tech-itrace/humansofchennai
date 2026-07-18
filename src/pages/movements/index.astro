@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StoryCard from '../../components/StoryCard.astro';
+
+const stories = (
+  await getCollection('stories', ({ data }) => data.status === 'published' && data.tags.includes('movements'))
+).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<BaseLayout
+  title="Movements — Humans of Chennai"
+  description="Stories tied to social change, activism, and community organizing across Chennai."
+>
+  <div class="wrap">
+    <p class="section-title">Movements</p>
+    <h1 class="page-title">Movements</h1>
+    <p class="page-intro">Stories tied to social change, activism, and community organizing across the city.</p>
+    {
+      stories.length > 0 ? (
+        <div class="story-grid">
+          {stories.map((story) => (
+            <StoryCard story={story} />
+          ))}
+        </div>
+      ) : (
+        <p class="empty-note">New movement stories are on the way.</p>
+      )
+    }
+  </div>
+</BaseLayout>

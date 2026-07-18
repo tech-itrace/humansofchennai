@@ -1,6 +1,6 @@
 ---
 name: Viswanathan Anand
-photo: images/stories/{{slug}}/viswanathananand.png
+photo: images/stories/viswanathan-anand/cover.png
 photoAlt: Viswanathan Anand at a chess board
 area: Chennai
 category: Work

@@ -1,0 +1,33 @@
+---
+import { resolvePhotoUrl } from '../lib/photoUrl';
+
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  tone: 'accent' | 'accent-2';
+  photo?: string;
+  photoAlt?: string;
+}
+
+const { title, description, href, tone, photo, photoAlt } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<a class={`section-card reveal tone-${tone}`} href={href}>
+  <div class="section-card-media">
+    {
+      photo ? (
+        <img src={resolvePhotoUrl(base, photo)} alt={photoAlt ?? title} loading="lazy" />
+      ) : (
+        <span class="section-card-badge">Coming soon</span>
+      )
+    }
+    <div class="section-card-scrim" />
+    <div class="section-card-caption">
+      <p class="section-card-title">{title}</p>
+      <p class="section-card-desc">{description}</p>
+      <span class="pill-link pill-link-light">See all {title} &rarr;</span>
+    </div>
+  </div>
+</a>

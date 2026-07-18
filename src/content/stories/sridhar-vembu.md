@@ -1,6 +1,6 @@
 ---
 name: Sridhar Vembu
-photo: images/stories/{{slug}}/sridhar.png
+photo: images/stories/sridhar-vembu/cover.png
 photoAlt: Sridhar Vembu at a Zoho office campus
 area: Chennai
 category: Work

@@ -1,6 +1,6 @@
 ---
 name: Kamala
-photo: images/stories/{{slug}}/kamala.png
+photo: images/stories/kamala/cover.png
 photoAlt: Kamala smiling outside her tailoring shop
 area: Mylapore
 category: Craft

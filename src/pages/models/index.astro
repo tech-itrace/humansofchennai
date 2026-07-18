@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StoryCard from '../../components/StoryCard.astro';
+
+const stories = (
+  await getCollection('stories', ({ data }) => data.status === 'published' && data.tags.includes('models'))
+).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<BaseLayout
+  title="Models — Humans of Chennai"
+  description="Notable role models and change-makers from Chennai whose lives inspire."
+>
+  <div class="wrap">
+    <p class="section-title">Models</p>
+    <h1 class="page-title">Models</h1>
+    <p class="page-intro">Notable role models and change-makers whose life stories inspire.</p>
+    {
+      stories.length > 0 ? (
+        <div class="story-grid">
+          {stories.map((story) => (
+            <StoryCard story={story} />
+          ))}
+        </div>
+      ) : (
+        <p class="empty-note">New profiles are on the way.</p>
+      )
+    }
+  </div>
+</BaseLayout>

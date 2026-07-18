@@ -1,0 +1,46 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import StoryCard from './StoryCard.astro';
+
+interface Props {
+  stories: CollectionEntry<'stories'>[];
+}
+
+const { stories } = Astro.props;
+---
+
+<div class="carousel">
+  <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Scroll to previous stories">
+    &#8249;
+  </button>
+  <ul class="carousel-track">
+    {
+      stories.map((story) => (
+        <li class="carousel-item">
+          <StoryCard story={story} />
+        </li>
+      ))
+    }
+  </ul>
+  <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Scroll to next stories">
+    &#8250;
+  </button>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.carousel').forEach((carousel) => {
+    const track = carousel.querySelector<HTMLElement>('.carousel-track');
+    const prev = carousel.querySelector<HTMLButtonElement>('.carousel-arrow-prev');
+    const next = carousel.querySelector<HTMLButtonElement>('.carousel-arrow-next');
+    if (!track) return;
+
+    const scrollByCard = (direction: 1 | -1) => {
+      const item = track.querySelector<HTMLElement>('.carousel-item');
+      const step = (item?.offsetWidth ?? 280) + 24;
+      track.scrollBy({ left: step * direction, behavior: 'smooth' });
+    };
+
+    prev?.addEventListener('click', () => scrollByCard(-1));
+    next?.addEventListener('click', () => scrollByCard(1));
+  });
+</script>

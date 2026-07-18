@@ -67,5 +67,11 @@ collections:
         options: ["draft", "published"]
         default: "draft"
         hint: 'Only "published" stories appear on the live site. Leave as draft until the PR is reviewed and merged.'
-      - { label: "Tags", name: "tags", widget: "list", default: [] }
+      - {
+          label: "Tags",
+          name: "tags",
+          widget: "list",
+          default: [],
+          hint: 'Freeform tags. Add "memories", "moments", "movements", and/or "models" to also feature this story in those homepage sections.',
+        }
       - { label: "Story", name: "body", widget: "markdown" }

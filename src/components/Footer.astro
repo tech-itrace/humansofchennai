@@ -1,12 +1,93 @@
 ---
+const base = import.meta.env.BASE_URL;
 const year = new Date().getFullYear();
+
+const quickLinks = [
+  { label: 'Home', href: base },
+  { label: 'Stories', href: `${base}stories/` },
+  { label: 'Memories', href: `${base}memories/` },
+  { label: 'Moments', href: `${base}moments/` },
+  { label: 'Movements', href: `${base}movements/` },
+  { label: 'Models', href: `${base}models/` },
+  { label: 'About', href: `${base}about/` },
+];
+
+// TODO: replace with real profile URLs once accounts are set up.
+const socialLinks = [
+  { label: 'Instagram', href: '#' },
+  { label: 'Facebook', href: '#' },
+  { label: 'X (Twitter)', href: '#' },
+];
 ---
 
 <footer class="site-footer">
   <div class="wrap">
-    <p>
-      &copy; {year} Humans of Chennai &mdash; stories of ordinary people
-      across the city, told in their own words.
-    </p>
+    <div class="footer-grid">
+      <div class="footer-col footer-brand-col">
+        <p class="footer-brand">Humans of Chennai</p>
+        <p class="footer-tagline">Stories of ordinary people across the city, told in their own words.</p>
+        <p class="footer-community-label">Join Our Community</p>
+        <div class="footer-social">
+          {
+            socialLinks.map((social) => (
+              <a href={social.href} aria-label={social.label} class="footer-social-link">
+                {social.label === 'Instagram' && (
+                  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6" />
+                    <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6" />
+                    <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" />
+                  </svg>
+                )}
+                {social.label === 'Facebook' && (
+                  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                    <path
+                      d="M14 8.5h2.2V5.3h-2.4c-2.4 0-3.8 1.5-3.8 3.9v1.9H7.6v3.2H10V21h3.1v-6.7h2.4l.4-3.2h-2.8V9.5c0-.7.3-1 .9-1z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                )}
+                {social.label === 'X (Twitter)' && (
+                  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                    <path
+                      d="M4 4l6.6 8.4L4.3 20h2.1l5.3-6.2 4 6.2H20l-6.8-8.8L19.4 4h-2.1l-4.9 5.7L8.2 4H4z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                )}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col-title">Quick Links</p>
+        <ul class="footer-links">
+          {
+            quickLinks.map((link) => (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col-title">Contact</p>
+        <ul class="footer-links footer-contact">
+          <li>[email]</li>
+          <li>Chennai, Tamil Nadu, India</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <nav class="footer-legal">
+        <a href={`${base}privacy/`}>Privacy Policy</a>
+        <a href={`${base}terms/`}>Terms of Use</a>
+      </nav>
+      <p class="footer-copyright">&copy; {year} Humans of Chennai</p>
+    </div>
   </div>
 </footer>
