@@ -1,10 +1,11 @@
 ---
-name: A. R. Rahman
+name: Shiv Nadar
 photo: images/stories/a-r-rahman/ARRahman.png
 photoAlt: A. R. Rahman
-area: "Kodambakkam"
-category: "Work"
-pullQuote: The Chennai-born composer who became the first Indian to win an Academy Award for music.
+area: Kodambakkam
+category: Work
+pullQuote: The Chennai-born composer who became the first Indian to win an
+  Academy Award for music.
 publishDate: 2026-07-16T07:56:00.000+05:30
 contributedBy: Venk
 status: published
